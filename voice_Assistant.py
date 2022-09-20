@@ -1,5 +1,4 @@
 import time
-
 import pyjokes
 import pywhatkit
 import speech_recognition as sr
@@ -89,22 +88,22 @@ crypto_api = 'https://api.coingecko.com/api/v3/simple/price?ids=Bitcoin%2CEthere
              '%2CRegen%2CFreeway%2Cchrono.tech%2CKomodo%2CDFI.money%2CCargoX%2CDEI%2CLCX&vs_currencies=INR'
 
 # Wolfram API
-wolfram_api='X44P8H-G775R3855K'
-chuck_norris_api='https://api.chucknorris.io/jokes/random'
+wolfram_api='X44P8H-G775R3855K'   #(Need to create your own API)
+chuck_norris_api='https://api.chucknorris.io/jokes/random'   #(Need to create your own API)
 # News API Key
-news_api_key = 'ea840b5d21f54a4c8785f1e4bb5e7cbd'
+news_api_key = 'ea840b5d21f54a4c8785f1e4bb5e7cbd'    #(Need to create your own API)
 
 # Weather API Key
 weather_api_key = 'xxx'
 
 # Distance API Key
-distance_api_key = '90T6GtmFVuOAA94r4MdFhHALREhb6jhY'
+distance_api_key = '90T6GtmFVuOAA94r4MdFhHALREhb6jhY'    #(Need to create your own API)
 MASTER = "Raj"
 # convert speech to text
-def alex_listen():
+def rose_listen():
     # create recognizer
     r = sr.Recognizer()
-    r.energy_threshold = 20000
+    r.energy_threshold = 20000     #(change according to your system requirement)
     # what ever we speak will be our source for microphone
     with sr.Microphone() as source:
         # use listen function so that recognizer can catch the source
@@ -124,7 +123,7 @@ def alex_listen():
 
 
 # convert text to speech
-def alex_talk(text):
+def rose_talk(text):
     # create audio data
     file_name = 'audio_data.mp3'
     # convert audio data
@@ -136,7 +135,7 @@ def alex_talk(text):
     # remove file
     os.remove(file_name)
 # Hindi Translator
-def alex_talk_hi(text):
+def rose_talk_hi(text):
     # create audio data
     file_name = 'audio_data.mp3'
     # convert text to speech
@@ -156,7 +155,7 @@ def wolfram_alpha_country_capital(text):
     answer_split = answer.split()
     capital_result = 'The capital of ' + answer_split[-1] + ' is ' + answer_split[0]
     print(capital_result)
-    alex_talk(capital_result)
+    rose_talk(capital_result)
 
 # Calculator
 def wolfram_alpha_calculator(text):
@@ -164,7 +163,7 @@ def wolfram_alpha_calculator(text):
     result = client.query(text)
     answer = next(result.results).text
     print(answer)
-    alex_talk('The answer is ' + answer)
+    rose_talk('The answer is ' + answer)
 # Google search
 
 
@@ -177,42 +176,42 @@ def google_search(text):
     page = requests.get(URL, headers=headers)
     soup = BeautifulSoup(page.content,'html.parser')
     result = soup.find(class_='IsqQVc NprOob wT3VGc').get_text()
-    alex_talk(result)
+    rose_talk(result)
 
 
 def searchGoogle(query):
     if "google" in query:
         query = query.replace("google search","")
         query = query.replace("google","")
-        alex_talk("This is what I found on google")
+        rose_talk("This is what I found on google")
         try:
             pywhatkit.search(query)
             result = googleScrap.summary(query,1)
-            alex_talk(result)
+            rose_talk(result)
         except:
-            alex_talk("No speakable output available")
+            rose_talk("No speakable output available")
 
 def searchYoutube(query):
     if "youtube" in query:
-        alex_talk("This is what I found for your search!")
+        rose_talk("This is what I found for your search!")
         query = query.replace("youtube search","")
         query = query.replace("youtube","")
         query = query.replace("jarvis","")
         web  = "https://www.youtube.com/results?search_query=" + query
         webbrowser.open(web)
         pywhatkit.playonyt(query)
-        alex_talk("Done, Sir")
+        rose_talk("Done, Sir")
 
 
 def searchWikipedia(query):
     if "wikipedia" in query:
-        alex_talk("Searching from wikipedia....")
+        rose_talk("Searching from wikipedia....")
         query = query.replace("wikipedia","")
         query = query.replace("search wikipedia","")
         results = wikipedia.summary(query,sentences = 2)
-        alex_talk("According to wikipedia..")
+        rose_talk("According to wikipedia..")
         print(results)
-        alex_talk(results)
+        rose_talk(results)
 
 
 # President of a certain country
@@ -221,7 +220,7 @@ def wolfram_alpha_president(text):
     result = client.query(text)
     answer = next(result.results).text
     print(answer)
-    alex_talk('The president is ' + answer)
+    rose_talk('The president is ' + answer)
 # Translator function
 
 def get_news():
@@ -235,12 +234,12 @@ def get_news():
 
     for i in range(3):
         print(news_headlines[i])
-        alex_talk(news_headlines[i])
+        rose_talk(news_headlines[i])
 
 
 def get_weather():
-    alex_talk('No problem, I will look it up for you. What city are you interested in?')
-    weather_input = alex_listen()
+    rose_talk('No problem, I will look it up for you. What city are you interested in?')
+    weather_input = rose_listen()
     print(weather_input)
 
     user_query = weather_input
@@ -251,93 +250,94 @@ def get_weather():
     page = requests.get(URL, headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
     result = soup.find(class_='wob_t q8U8x').get_text()
-    alex_talk(result+'°C')
+    rose_talk(result+'°C')
 
 
 def distance_info():
-    alex_talk('Sure, let me know the starting point')
-    location_one = alex_listen()
+    rose_talk('Sure, let me know the starting point')
+    location_one = rose_listen()
     time.sleep(1)
-    alex_talk('Allright, and now tell me the final destination')
-    location_two = alex_listen()
+    rose_talk('Allright, and now tell me the final destination')
+    location_two = rose_listen()
     while (location_two==''):
-        alex_talk('Excuse me, I did not get that. Can you please repeat it?')
-        location_two=alex_listen()
-    alex_talk('Give me one moment, I will use my smart brain to calculate the distance for you')
+        rose_talk('Excuse me, I did not get that. Can you please repeat it?')
+        location_two=rose_listen()
+    rose_talk('Give me one moment, I will use my smart brain to calculate the distance for you')
     dist_url = 'http://www.mapquestapi.com/directions/v2/route?key=' + distance_api_key + '&from=' + location_one + '&to=' + location_two + '&unit=k'
     dist_request = requests.get(dist_url).json()
     distance = round(dist_request['route']['distance'], 2)
     distance_result = 'The distance between ' + location_one + ' and ' + location_two + ' is ' + str(
         distance) + ' kilometers'
     print(distance_result)
-    alex_talk(distance_result)
+    rose_talk(distance_result)
 def translator(text):
-    alex_talk_hi(tr.google(text, from_language='en',to_language='hi'))
+    rose_talk_hi(tr.google(text, from_language='en',to_language='hi'))
 
 
 # Below function will give reply based on the input text
-def alex_reply(text):
+def rose_reply(text):
     # smalltalk - what is your name?
     if 'what' in text and 'name' in text:
-        alex_talk('My name is Alina and I am your personal assistant')
+        rose_talk('My name is Rose and I am your personal assistant')
 
     # smalltalk - why do you exist?
     elif 'why' in text and 'exist' in text:
-        alex_talk('I was created to work for you. I dont need a break and I will never ask for days off')
+        rose_talk('I was created to work for you. I dont need a break and I will never ask for days off')
 
     # smalltalk - when do you sleep?
     elif 'when' in text and 'sleep' in text:
-        alex_talk('I never sleep. I was created to support you 24 hours')
+        rose_talk('I never sleep. I was created to support you 24 hours')
 
     # smalltalk- are you stupid?
     elif 'you' in text and 'stupid' in text:
-        alex_talk('No, I am not stupid. My grandmother told me that there are no stupid persons out there. '
+        rose_talk('No, I am not stupid. My grandmother told me that there are no stupid persons out there. '
                   + 'I try to give my best everyday and learn continuously')
 
     # Smalltalk - Favorite Movie?
     elif 'favorite' in text or 'favourite' in text and 'movie' in text:
-        alex_talk("My favorite movie is Titanic. I watch it with my friends all the time")
+        rose_talk("My favorite movie is Titanic. I watch it with my friends all the time")
 
+    # Translation
     elif 'translate' in text:
-        alex_talk('Sure, What do you want me to translate?')
+        rose_talk('Sure, What do you want me to translate?')
         while True:
             try:
-                text_to_translate = alex_listen()
+                text_to_translate = rose_listen()
                 if text_to_translate != 'turn off translator':
                     translator(text_to_translate)
                 else:
-                    alex_talk('The translator will be turned off.. What else can I do for you?')
+                    rose_talk('The translator will be turned off.. What else can I do for you?')
                     break
             except AssertionError as ae:
-                alex_talk('No text to speak')
+                rose_talk('No text to speak')
     elif 'cryptocurrency' in text or 'crypto' in text and 'price' in text:
         try:
-            alex_talk("Which cryptocurrency price would you like to know?")
-            listen_name = alex_listen()
+            rose_talk("Which cryptocurrency price would you like to know?")
+            listen_name = rose_listen()
             response = requests.get(crypto_api)
             crypto_json = response.json()
-            alex_talk(
+            rose_talk(
                 'The current price for a ' + listen_name + 'is' + str(crypto_json[listen_name]['inr']) + 'rupees')
 
         except KeyError:
-            alex_talk("keyError")
+            rose_talk("keyError")
 
 
     elif 'apple'in text:
         apple=yf.Ticker('AAPL')
         print(apple.info['regularMarketPrice'])
-        alex_talk(
+        rose_talk(
             'At this moment you can purchase one Apple Share for ' + str(apple.info['regularMarketPrice']) + 'us dollar')
 
     elif 'facebook'in text:
         facebook=yf.Ticker('FB')
         print(facebook.info['regularMarketPrice'])
-        alex_talk('At this moment you can purchase one Facebook Share for ' + str(facebook.info['regularMarketPrice'])+'us dollar')
+        rose_talk('At this moment you can purchase one Facebook Share for ' + str(facebook.info['regularMarketPrice'])+'us dollar')
 
     elif 'tesla'in text:
         tesla=yf.Ticker('TSLA')
         print(tesla.info['regularMarketPrice'])
-        alex_talk('At this moment you can purchase one tesla Share for ' + str(tesla.info['regularMarketPrice']) + 'us dollar')
+        rose_talk('At this moment you can purchase one tesla Share for ' + str(tesla.info['regularMarketPrice']) + 'us dollar')
 
     # Wolfram Alpha - Capital of a Country
     elif 'capital' in text and 'of' in text:
@@ -368,14 +368,14 @@ def alex_reply(text):
 
     elif 'the time' in text.lower():
         strTime = datetime.datetime.now().strftime("%H:%M:%S")
-        alex_talk(f"{MASTER} the time is {strTime}")
+        rose_talk(f"{MASTER} the time is {strTime}")
 
     elif 'joke' in text or 'jokes' in text:
-        alex_talk(pyjokes.get_joke())
+        rose_talk(pyjokes.get_joke())
 
         # Top 3 News- Headlines
     elif 'news' in text:
-        alex_talk('Allright, let me tell you the first three headlines')
+        rose_talk('Allright, let me tell you the first three headlines')
         get_news()
 
         # Weather
@@ -393,28 +393,28 @@ def alex_reply(text):
         if answer == '(data not available)':
             google_search(text)
         else:
-            alex_talk('The answer is ' + answer)
+            rose_talk('The answer is ' + answer)
 
     elif 'stop' in text:
-        alex_talk('It was a pleasure to help you, I wish you a wonderful day')
+        rose_talk('It was a pleasure to help you, I wish you a wonderful day')
 
 
     else:
-        alex_talk('Excuse me, I did not get that. Can you please repeat it?')
+        rose_talk('Excuse me, I did not get that. Can you please repeat it?')
 
 
 # Execution Section
 
 def execute_bot():
-    alex_talk('Hi, I am here to support you. Can you please tell me your name?')
-    listen_name=alex_listen()
-    alex_talk('Hi'+ listen_name + 'What can I do for you?')
+    rose_talk('Hi, I am here to support you. Can you please tell me your name?')
+    listen_name=rose_listen()
+    rose_talk('Hi'+ listen_name + 'What can I do for you?')
     while True:
-        listen_alex = alex_listen()
-        print(listen_alex)
-        alex_reply(listen_alex)
+        listen_rose = rose_listen()
+        print(listen_rose)
+        rose_reply(listen_rose)
         # if stop keyword encounter which means we are ending the while loop
-        if 'stop' in listen_alex:
+        if 'stop' in listen_rose:
             break
 
 
