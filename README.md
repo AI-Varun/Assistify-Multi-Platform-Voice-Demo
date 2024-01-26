@@ -1,4 +1,4 @@
-# AI-Varun-Working_Demo_of_Alexa_Siri_GoogleVoice
+# Working_Demo_of_Alexa_Siri_GoogleVoice
 ## Instructions:
 It is recomended to look at the if,elif and else condition in code before use
 ## Voice Commands that can be implemented
