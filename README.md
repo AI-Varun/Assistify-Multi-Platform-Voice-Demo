@@ -1,4 +1,4 @@
-# Working_Demo_of_Alexa_Siri_GoogleVoice
+# Assistify: Multi-Platform Voice Demo
 ## Instructions:
 It is recomended to look at the if,elif and else condition in code before use
 ## Voice Commands that can be implemented
